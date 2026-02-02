@@ -4,7 +4,16 @@ import Logout from "./logout";
 import ModeToggle  from "./../components/ThemeToggle";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import Profile from "./profile";
 import { getSession } from "@/lib/auth/auth";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+
 export default async function Navbar() {
 
   const session=await getSession(); 
@@ -27,15 +36,7 @@ export default async function Navbar() {
                 Dashboard
               </Button>
             </Link>
-
-            <Link href="/profile">
-              <Button className="font-bold" variant="ghost">
-                Profile
-              </Button>
-            </Link>
-
-             <Logout />
-          
+                <Profile /> 
           </div>
         ) : (
         <div className="flex gap-3 items-center justify-between">

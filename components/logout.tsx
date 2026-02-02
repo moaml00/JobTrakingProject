@@ -17,12 +17,11 @@ export default function Logout() {
       }
 
   return (
-    <Button
-      className="font-bold"
-      variant="ghost"
+    <span 
+      className="font-bol size=sm mx-0 cursor-pointer"
       onClick={() => handleLogout()}
     >
-        Logout
-    </Button>
+      logout
+    </span>
   );
 }

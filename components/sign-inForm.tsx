@@ -1,6 +1,5 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { useSession } from "@/lib/auth/auth-client"; 
 import {
   Card,
   CardDescription,
@@ -16,7 +15,6 @@ import Link from "next/link";
 import React, { use, useState } from "react";
  
 export default function SignIn() {
-  const { data } = useSession();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");

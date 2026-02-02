@@ -26,4 +26,4 @@ export async function getSession(){
     headers:await headers(),
   })
   return result;
-} 
+}

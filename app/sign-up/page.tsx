@@ -11,6 +11,7 @@ export default async function signUp() {
   if(session?.user){
     redirect('/');
   }
+
   return (
     <SignUp />
   )
