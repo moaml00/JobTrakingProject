@@ -31,12 +31,12 @@ export default async function Navbar() {
         </Link>
         {session?.user ? (
           <div className="flex gap-4">
-              <Link href="/dashboard">
+            <Link href="/dashboard">
               <Button className="font-bold" variant="ghost">
                 Dashboard
               </Button>
             </Link>
-                <Profile /> 
+               <Profile /> 
           </div>
         ) : (
         <div className="flex gap-3 items-center justify-between">

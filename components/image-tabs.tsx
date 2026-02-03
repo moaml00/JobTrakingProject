@@ -30,7 +30,10 @@ const [active, setactive] = useState("organize");
                   Manage Boards{" "}
                 </Button>
               </div>
-              <div className=" relative mx-w-5xl mx-auto overflow-hidden rounded-lg border-gray-200 shadow-xl flex flex-col gap-10">
+              <div className=" 
+              relative mx-w-5xl mx-auto overflow-hidden rounded-lg
+               border-gray-200 shadow-xl flex flex-col gap-10
+               dark:shadow-2xl dark:shadow-black/60">
                 {active === "organize" && (
                   <Image
                     className="border-b-8"

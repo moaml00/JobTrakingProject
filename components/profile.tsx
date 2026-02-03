@@ -9,10 +9,10 @@ import { DropdownMenuLabel } from '@radix-ui/react-dropdown-menu'
 
 export default  async  function Profile() {
 const session=await getSession();
-let name=session?.user.name.trim();
-let userletter=name?name.charAt(0).toUpperCase():"U";
+let  name=session?.user.name.trim();
+name=name?.charAt(0).toUpperCase(); 
+
 console.log("Session User Name:", session?.user.name);  
-console.log("User Letter:", userletter);
   return (
     <div className='flex items-center gap-0'>
 
@@ -28,15 +28,15 @@ console.log("User Letter:", userletter);
                <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className=' px-0'> 
                     <Avatar>
-                <AvatarFallback>{userletter}</AvatarFallback>
+                <AvatarFallback>{name}</AvatarFallback>
                     </Avatar>
                 </Button>
                 </DropdownMenuTrigger>              
                 <DropdownMenuContent>
             <DropdownMenuLabel>
                     <div>
-                        <p>{session?.user.name}</p>
-                        <p>{session?.user.email}</p>
+                        <p className=' font-bold text-foreground'>{session?.user.name}</p>
+                        <p className=' text-muted-foreground'>{session?.user.email}</p>
                     </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />

@@ -17,7 +17,6 @@ import React, { use, useState } from "react";
 export default function SignIn() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
@@ -83,9 +82,9 @@ export default function SignIn() {
               {loading ? "Signing In..." : "Sign In"}
             </Button>
             <p>
-              Don't have an account?{" "}
+              Don't have an account?
               <Link href="/sign-up" className="font-bold">
-                {" "}
+                
                 Sign up
               </Link>
             </p>

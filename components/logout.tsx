@@ -9,9 +9,15 @@ export default function Logout() {
     const router = useRouter();
 
     async function handleLogout() {
-        await authClient.signOut();
-        router.push('/sign-in');
-        router.refresh();
+        const result=await authClient.signOut();
+        
+        if(result){
+          router.push('/sign-in');
+            router.refresh();
+        }
+        else{
+          alert("error signing out ");
+        }
         
         // Optionally, you can add additional logic here, such as redirecting the user
       }

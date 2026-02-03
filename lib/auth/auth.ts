@@ -1,6 +1,7 @@
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { MongoClient } from "mongodb";
+import initializeUserBoard from "../init-user-board";
 import { headers } from "next/headers";
 
 if (!process.env.MONGO_URI) {
@@ -19,6 +20,21 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
+
+  databaseHooks: {
+    user:{
+      create:{
+
+      after: async (user) => {
+        if(user){
+        await initializeUserBoard(String(user.id));  
+        }
+      }
+      }
+
+    }
+  }
+
 });
 
 export async function getSession(){
