@@ -5,7 +5,7 @@ import connectDB from "../db";
 import { Column, JobApplication } from "../models";
 import board from "../models/board";
 
-interface JobApplicationData {
+export interface JobApplicationData {
   company: string;
   position: string;
   location?: string;

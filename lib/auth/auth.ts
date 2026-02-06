@@ -37,7 +37,6 @@ export const auth = betterAuth({
   databaseHooks: {
     user:{
       create:{
-
       after: async (user) => {
         if(user){
         await initializeUserBoard(String(user.id));  

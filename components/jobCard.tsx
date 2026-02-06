@@ -1,5 +1,6 @@
+"use client";
 import { Column, JobApplication } from "@/lib/models/modelsTypes";
-import React from "react";
+import React, { useState } from "react";
 import { Card, CardContent } from "./ui/card";
 import {
   Edit2,
@@ -16,6 +17,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { updateJobApplication } from "@/lib/actions/update-application";
+import EditCard from "./edit-card";
+import { deleteJob } from "@/lib/actions/delete-application";
 
 interface JobCard {
   column: Column[];
@@ -23,6 +27,28 @@ interface JobCard {
 }
 
 export default function JobCard({ column, job }: JobCard) {
+  const [isEditing, setIsEditing] = useState(false);
+
+
+  async function hadleMove(newColumnId: string) {
+    try {
+      const result = await updateJobApplication(job._id, {
+        columnId: newColumnId,
+      });
+    } catch (error) {
+      console.log("failed to move job", error);
+    }
+  }
+    async function handleDelete() {
+    try {
+      const result = await deleteJob(job._id);
+      if(result.error)
+      console.log("failed to move job", result.error);
+    } catch (error) {
+      console.log("failed to move job", error);
+    }
+  }
+
   return (
     <div>
       <Card className="cursor-pointer hover:shadow-lg bg-background shadow-sm group transition-shadow">
@@ -54,19 +80,22 @@ export default function JobCard({ column, job }: JobCard) {
                       .filter((e) => e._id !== job.columnId)
                       .map((e) => (
                         <div className="border">
-                        <DropdownMenuItem key={e._id}>
-                          Move To {e.name}
-                        </DropdownMenuItem>
-                         </div>
-                     ))}
+                          <DropdownMenuItem
+                            key={e._id}
+                            onClick={() => hadleMove(e._id)}
+                          >
+                            Move To {e.name}
+                          </DropdownMenuItem>
+                        </div>
+                      ))}
                   <div className="border">
-                    <DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setIsEditing(true)}>
                       <EditIcon className="mr-2 h-4 w-4" />
-                    <p className="text-gray-900" >edit</p> 
+                      <p className="text-forground font-bold">edit</p>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem onClick={()=>handleDelete()}>
                       <Trash2 className="mr-2 h-4 w-4" />
-                     <p className="text-red-500" >Delete</p> 
+                      <p className="text-red-500 font-bold">Delete</p>
                     </DropdownMenuItem>
                   </div>
                 </DropdownMenuContent>
@@ -108,6 +137,7 @@ export default function JobCard({ column, job }: JobCard) {
           </div>
         </CardContent>
       </Card>
+      <EditCard job={job} open={isEditing} onOpenChange={setIsEditing} />
     </div>
   );
 }

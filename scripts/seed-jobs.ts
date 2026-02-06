@@ -183,7 +183,7 @@ async function seed() {
 
     if (columns.length === 0) {
       console.error(
-        "❌ No columns found. Please ensure the board has default columns."
+        "❌ No columns found. Please ensure the board has default columns.",
       );
       process.exit(1);
     }
@@ -198,7 +198,7 @@ async function seed() {
     const existingJobs = await JobApplication.find({ userId: USER_ID });
     if (existingJobs.length > 0) {
       console.log(
-        `🗑️  Deleting ${existingJobs.length} existing job applications...`
+        `🗑️  Deleting ${existingJobs.length} existing job applications...`,
       );
       await JobApplication.deleteMany({ userId: USER_ID });
 
@@ -211,11 +211,11 @@ async function seed() {
 
     // Distribute jobs across columns
     const jobsByColumn: Record<string, typeof SAMPLE_JOBS> = {
-      "Wish List": SAMPLE_JOBS.slice(0, 3),
+      "Wishlist": SAMPLE_JOBS.slice(0, 3),
       Applied: SAMPLE_JOBS.slice(3, 7),
       Interviewing: SAMPLE_JOBS.slice(7, 10),
-      Offer: SAMPLE_JOBS.slice(10, 12),
-      Rejected: SAMPLE_JOBS.slice(12, 15),
+      offer: SAMPLE_JOBS.slice(10, 12),
+      rejected: SAMPLE_JOBS.slice(12, 15),
     };
 
     let totalCreated = 0;
