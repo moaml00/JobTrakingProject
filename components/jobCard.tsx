@@ -1,5 +1,6 @@
 "use client";
 import { Column, JobApplication } from "@/lib/models/modelsTypes";
+import { toast } from "sonner"
 import React, { useState } from "react";
 import { Card, CardContent } from "./ui/card";
 import {
@@ -24,9 +25,10 @@ import { deleteJob } from "@/lib/actions/delete-application";
 interface JobCard {
   column: Column[];
   job: JobApplication;
+  DragHandleProps?:React.HtmlHTMLAttributes<HTMLElement>  
 }
 
-export default function JobCard({ column, job }: JobCard) {
+export default function JobCard({ column, job,DragHandleProps }: JobCard) {
   const [isEditing, setIsEditing] = useState(false);
 
 
@@ -35,6 +37,9 @@ export default function JobCard({ column, job }: JobCard) {
       const result = await updateJobApplication(job._id, {
         columnId: newColumnId,
       });
+      if(result.success){
+     toast.info("updated succsessfily") 
+      }
     } catch (error) {
       console.log("failed to move job", error);
     }
@@ -44,14 +49,19 @@ export default function JobCard({ column, job }: JobCard) {
       const result = await deleteJob(job._id);
       if(result.error)
       console.log("failed to move job", result.error);
+
+      if(result.success){
+   
+        toast.success("deleted succseesfily");
+      }
     } catch (error) {
       console.log("failed to move job", error);
     }
   }
 
   return (
-    <div>
-      <Card className="cursor-pointer hover:shadow-lg bg-background shadow-sm group transition-shadow">
+    <>
+      <Card className="cursor-pointer hover:shadow-lg bg-background shadow-sm group transition-shadow" {...DragHandleProps}>
         <CardContent>
           <div className="p-4">
             {/* Header: title + menu */}
@@ -138,6 +148,6 @@ export default function JobCard({ column, job }: JobCard) {
         </CardContent>
       </Card>
       <EditCard job={job} open={isEditing} onOpenChange={setIsEditing} />
-    </div>
+    </>
   );
 }

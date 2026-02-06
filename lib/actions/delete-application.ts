@@ -31,3 +31,4 @@ export async function deleteJob(id:string){
   revalidatePath("/dashboard");
   return{success:true};
 } 
+

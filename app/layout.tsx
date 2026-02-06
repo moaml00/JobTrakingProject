@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Toaster } from "@/components/ui/sonner";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -31,6 +32,7 @@ export default function RootLayout({ children,}: Readonly<{children: React.React
         >
           <Navbar/>
           {children}
+          <Toaster/>
         </ThemeProvider>
       </body>
     </html>

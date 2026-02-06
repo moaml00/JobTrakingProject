@@ -95,7 +95,7 @@ const INITIAL_FORM_DATA = {
   return (
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
       <DialogTrigger>
-        <Button variant="outline" className=" w-full">
+        <Button variant="outline" className=" w-full m-2 mb-10">
           <Plus className=" mr-2 h-4 w-4" />
           Add New Job
         </Button>
