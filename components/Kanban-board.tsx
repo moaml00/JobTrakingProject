@@ -134,7 +134,6 @@ export default function Kanbanboard({ board, userId }: KanbanProps) {
   const columns = board.columns;
   const sortedcols = columns?.sort((a, b) => a.order - b.order) || [];
 
-  console.log(columns[0].jobApplications[0].company, "helloooooo,v");
   return (
     <div>
       <div>

@@ -16,7 +16,7 @@ async function getBoard(userId: string) {
   }).populate({
     path: "columns",
     populate: {
-      path: "jobApplications",
+    path: "jobApplications",
     },
   });
 
@@ -38,7 +38,7 @@ async function DashboardPage() {
           <h1 className="text-3xl font-bold text-foreground">Job Hunt</h1>
           <p className="text-muted-foreground">Track your job applications</p>
         </div>
-          <KanbanBoard board={board} userId={session.user.id} />
+          <KanbanBoard board={board} userId={session?.user.id} />
       </div>
     </div>
   );
