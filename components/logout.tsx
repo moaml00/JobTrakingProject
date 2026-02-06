@@ -12,8 +12,9 @@ export default function Logout() {
         const result=await authClient.signOut();
         
         if(result){
+          console.log("hi");
           router.push('/sign-in');
-            router.refresh();
+          router.refresh();
         }
         else{
           alert("error signing out ");

@@ -6,6 +6,7 @@ const defaultColumns = [
   { name: "Interviewing", order: 1 },
   { name: "offer", order: 2 },
   { name: "rejected", order: 3 },
+  { name: "Wishlist", order: 4 }
 ];
 
 export default async function initializeUserBoard(userId: string) {
@@ -13,7 +14,6 @@ export default async function initializeUserBoard(userId: string) {
     await connectDB();
 
     const existingBoard = await Board.findOne({ userId, name: "Job Hunt" });
-
     if (existingBoard) {
       return existingBoard;
     }

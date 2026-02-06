@@ -14,9 +14,22 @@ await client.connect();
 const db =client.db();
 export const auth = betterAuth({
   //...
+
+  trustedOrigins: [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://192.168.0.240:3000", // if you use network access
+  ],
+
   database: mongodbAdapter(db,{
     client,
   }),
+  session:{
+    cookieCache:{
+      enabled:true,
+      maxAge:60*60,
+    },
+  },
   emailAndPassword: {
     enabled: true,
   },
